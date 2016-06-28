@@ -3,7 +3,7 @@ project("PandaRun")
 
 FIND_LIBRARY(OPENGL_LIBRARY OpenGL)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include /usr/local/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include /usr/local/include ${CMAKE_CURRENT_SOURCE_DIR})
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib} /usr/local/lib)
 
 add_executable(PandaRun main.cpp Camera.cpp DrawPanda.h DrawPrimitives.h GLUtility.hpp MarkerTracker.cpp MarkerTracker.h PoseEstimation.cpp)
