@@ -5,6 +5,7 @@
 //  Copyright © 2016 Nan. All rights reserved.
 //
 
+#include <iostream>
 #include "Camera.hpp"
 
 void Camera::init(){
