@@ -14,6 +14,8 @@
 
 using namespace std;
 
+bool isStart = false;
+
 int main(int argc, char* argv[])
 {
     Camera camera;
@@ -62,10 +64,19 @@ int main(int argc, char* argv[])
         }
         
         /* Track a marker */
-        markerTracker.findMarker( img_bgr, resultMatrix);
-        
+        int pandaMarker = 0x0690;
+        bool foundPanda = false;
+        markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda);
+        if(!isStart){
+            int key = cvWaitKey(50);
+            if(key == 32){
+                
+                isStart = true;
+                cout<<"game start!";
+            }
+        }
         /* Render here */
-        display(window, img_bgr, resultMatrix, bkgnd, camera.getWidth(), camera.getHeight());
+        display(window, img_bgr, resultMatrix, bkgnd, camera.getWidth(), camera.getHeight(), isStart);
         
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

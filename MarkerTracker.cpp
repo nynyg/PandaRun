@@ -61,7 +61,7 @@ void MarkerTracker::cleanup()
     std::cout << "Finished\n";
 }
 
-void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
+void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __code, bool &found)
 {
     bool isFirstStripe = true;
     
@@ -315,7 +315,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                 
                 if ( fabs(c) < 0.001 ) //lines parallel?
                 {
-                    std::cout << "lines parallel" << std::endl;
+                    //std::cout << "lines parallel" << std::endl;
                     continue;
                 }
                 
@@ -425,50 +425,57 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                 }
             }
             
-            printf ("Found: %4x\n", code);
-            if(code == 0x0690){
-            if ( isFirstMarker )
-            {
-                cv::Mat markerTmp;
-                cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
-                cv::imshow ( kWinName4, markerTmp );
-                isFirstMarker = false;
+            if(code == __code){
+                found = true;
+                //printf ("Found: Panda!\n");
+                if ( isFirstMarker )
+                {
+                    cv::Mat markerTmp;
+                    cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
+                    cv::imshow ( kWinName4, markerTmp );
+                    isFirstMarker = false;
+                }
+                
+                //correct the order of the corners
+                if(angle != 0)
+                {
+                    cv::Point2f corrected_corners[4];
+                    for(int i = 0; i < 4; i++)	corrected_corners[(i + angle)%4] = corners[i];
+                    for(int i = 0; i < 4; i++)	corners[i] = corrected_corners[i];
+                }
+                
+                // transfer screen coords to camera coords
+                for(int i = 0; i < 4; i++)
+                {
+                    corners[i].x -= img_bgr.cols*0.5; //here you have to use your own camera resolution (x) * 0.5
+                    corners[i].y = -corners[i].y + img_bgr.rows*0.5; //here you have to use your own camera resolution (y) * 0.5
+                }
+                
+                estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );
             }
-            
-            //correct the order of the corners
-            if(angle != 0)
-            {
-                cv::Point2f corrected_corners[4];
-                for(int i = 0; i < 4; i++)	corrected_corners[(i + angle)%4] = corners[i];
-                for(int i = 0; i < 4; i++)	corners[i] = corrected_corners[i];
+            else{
+                found = false;
+                //cout<<"Panda disappeared!";
             }
-            
-            // transfer screen coords to camera coords
-            for(int i = 0; i < 4; i++)
-            {
-                corners[i].x -= img_bgr.cols*0.5; //here you have to use your own camera resolution (x) * 0.5
-                corners[i].y = -corners[i].y + img_bgr.rows*0.5; //here you have to use your own camera resolution (y) * 0.5
-            }
-            
-                estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );}
             
             //this part is only for printing
-//            for (int i = 0; i<4; ++i) {
-//                for (int j = 0; j<4; ++j) {
-//                    std::cout << std::setw(6);
-//                    std::cout << std::setprecision(4);
-//                    std::cout << resultMatrix[4*i+j] << " ";
-//                }
-//                std::cout << "\n";
-//            }
-//            std::cout << "\n";
-//            float x,y,z;
-//            x = resultMatrix[3];
-//            y = resultMatrix[7];
-//            z = resultMatrix[11];
-//            std::cout << "length: " << sqrt(x*x+y*y+z*z) << "\n";
-//            std::cout << "\n";
+            //            for (int i = 0; i<4; ++i) {
+            //                for (int j = 0; j<4; ++j) {
+            //                    std::cout << std::setw(6);
+            //                    std::cout << std::setprecision(4);
+            //                    std::cout << resultMatrix[4*i+j] << " ";
+            //                }
+            //                std::cout << "\n";
+            //            }
+            //            std::cout << "\n";
+            //            float x,y,z;
+            //            x = resultMatrix[3];
+            //            y = resultMatrix[7];
+            //            z = resultMatrix[11];
+            //            std::cout << "length: " << sqrt(x*x+y*y+z*z) << "\n";
+            //            std::cout << "\n";
         } // end of loop over contours
+        
         
         cv::imshow(kWinName1, img_bgr);
         cv::imshow(kWinName2, img_mono);

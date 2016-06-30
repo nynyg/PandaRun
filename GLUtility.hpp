@@ -80,7 +80,7 @@ void initGL(int argc, char *argv[])
     
 }
 
-void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16], unsigned char *bkgnd, const int &camera_width, const int &camera_height)
+void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16], unsigned char *bkgnd, const int &camera_width, const int &camera_height, bool isStart)
 {
     memcpy( bkgnd, img_bgr.data, camera_width*camera_height*3*sizeof(unsigned char) );
     
@@ -108,22 +108,11 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
     glPopMatrix();
     
     glEnable(GL_DEPTH_TEST);
-    
-    // move to marker-position
-    glMatrixMode( GL_MODELVIEW );
-    
-    float resultTransposedMatrix[16];
-    for (int x=0; x<4; ++x)
-    {
-        for (int y=0; y<4; ++y)
-        {
-            resultTransposedMatrix[x*4+y] = resultMatrix[y*4+x];
-        }
+    if(isStart){
+        glMatrixMode( GL_MODELVIEW );
+        Panda panda1;
+        panda1.drawPanda(resultMatrix);
     }
-    
-    Panda panda1;
-    panda1.drawPanda(resultTransposedMatrix);
-    
 }
 
 

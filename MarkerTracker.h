@@ -44,7 +44,7 @@ public:
 	~MarkerTracker(){
 		cleanup();
 	}
-	void findMarker( cv::Mat &img_bgr, float resultMatrix[16] );
+	void findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __code, bool &found);
 protected:
 	void init( );
 	void cleanup( );

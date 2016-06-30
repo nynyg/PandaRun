@@ -8,8 +8,18 @@
 #include "Panda.h"
 #include "DrawPrimitives.h"
 
-void Panda::drawPanda(float resultTransposedMatrix[16]){
+void Panda::drawPanda(float resultMatrix[16]){
     //glLoadTransposeMatrixf( resultMatrix );
+    // move to marker-position
+    
+    float resultTransposedMatrix[16];
+    for (int x=0; x<4; ++x)
+    {
+        for (int y=0; y<4; ++y)
+        {
+            resultTransposedMatrix[x*4+y] = resultMatrix[y*4+x];
+        }
+    }
     glLoadMatrixf( resultTransposedMatrix );
     glRotatef( -90, 1, 0, 0 );
     glScalef(0.03, 0.03, 0.03);
