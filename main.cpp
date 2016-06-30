@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
     
     // setup OpenCV
     cv::Mat img_bgr;
-    const double kMarkerSize = 0.048; // [m]
+    const double kMarkerSize = 0.08; // [m]
     MarkerTracker markerTracker(kMarkerSize);
     
     float resultMatrix[16];
