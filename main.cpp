@@ -14,6 +14,7 @@
 
 using namespace std;
 
+int start_button = 0;
 int main(int argc, char* argv[])
 {
     Camera camera;
@@ -63,6 +64,7 @@ int main(int argc, char* argv[])
         
         /* Track a marker */
         markerTracker.findMarker( img_bgr, resultMatrix);
+        
         
         /* Render here */
         display(window, img_bgr, resultMatrix, bkgnd, camera.getWidth(), camera.getHeight());

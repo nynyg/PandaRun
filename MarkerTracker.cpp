@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 void trackbarHandler( int pos, void* slider_value ) {
     *( (int*)slider_value ) = pos;
 }
@@ -127,6 +128,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                 
                 //e.g. stripeLength = 5 --> from -2 to 2
                 int nStop  = stripeLength>>1;
+                
                 int nStart = -nStop;
                 
                 cv::Size stripeSize;
@@ -259,7 +261,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                     {
                         cv::Mat iplTmp;
                         cv::resize( iplStripe, iplTmp, cv::Size(100,300) );
-                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
+//                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
                         isFirstStripe = false;
                     }
                     
@@ -431,7 +433,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
             {
                 cv::Mat markerTmp;
                 cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
-                cv::imshow ( kWinName4, markerTmp );
+//                cv::imshow ( kWinName4, markerTmp );
                 isFirstMarker = false;
             }
             
@@ -471,8 +473,8 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
 //            std::cout << "\n";
         } // end of loop over contours
         
-        cv::imshow(kWinName1, img_bgr);
-        cv::imshow(kWinName2, img_mono);
+       // cv::imshow(kWinName1, img_bgr);
+//        cv::imshow(kWinName2, img_mono);
         
         
         

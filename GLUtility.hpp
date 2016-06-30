@@ -121,8 +121,15 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
         }
     }
     
+    
     Panda panda1;
-    panda1.drawPanda(resultTransposedMatrix);
+//    panda1.drawPanda(resultTransposedMatrix);
+    float inputr[4][16];
+    for (int i =0; i <16;i++)
+        inputr[0][i] = resultTransposedMatrix[i];
+    inputr[1][0] = inputr[2][0] = inputr[3][0] = -1;
+    //panda1.drawArrow(inputr);
+    panda1.drawBamboo(resultTransposedMatrix);
     
 }
 

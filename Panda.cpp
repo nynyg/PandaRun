@@ -37,3 +37,45 @@ void Panda::drawPanda(float resultTransposedMatrix[16]){
     glRotatef( 90, 0, 1, 0 );
     drawCone( 0.1, 0.3, 10, 10 );
 }
+
+void Panda::drawArrow(float resultTransposedMatrix[4][16]){
+    for (int i = 0;i<4;i++){
+        if(resultTransposedMatrix[i][0]!=-1){
+            glLoadMatrixf(resultTransposedMatrix[i]);
+            glRotatef(-90, 1, 0, 0 );
+            glScalef(0.03, 0.03, 0.03);
+            
+            glColor4f(1.0,0,0,1.0);
+            drawCone(0.1,0.3,10,10);
+            
+            GLUquadricObj *quadratic;
+            quadratic=gluNewQuadric();
+            glTranslatef(0, 0, -0.4);
+            gluCylinder(quadratic,0.1f,0.1f,0.4f,32,32);
+            
+        }
+    }
+}
+
+void Panda::drawStone(float resultTransposedMatrix[16]){
+}
+
+void Panda::drawBamboo(float resultTransposedMatrix[16]){
+    glLoadMatrixf(resultTransposedMatrix);
+    glRotatef(-60, 1, 0, 0 );
+    glScalef(0.03, 0.03, 0.03);
+    
+    glColor4f(0.1,1.0,0.1,1.0);
+
+    GLUquadricObj *quadratic;
+    quadratic=gluNewQuadric();
+    glTranslatef(0, 0, -0.4);
+    gluCylinder(quadratic,0.1f,0.1f,0.4f,32,32);
+
+    glTranslatef(0, 0, -0.4);
+    gluCylinder(quadratic,0.1f,0.1f,0.4f,32,32);
+    
+    glColor4f(0.2, 0.2, 0.2, 1.0);
+    glTranslatef(0, 0, 0.4);
+    gluCylinder(quadratic,0.11f,0.11f,0.05f,32,32);
+}
