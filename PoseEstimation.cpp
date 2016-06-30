@@ -1,10 +1,3 @@
-#define _USE_MATH_DEFINES 
-#include <math.h>
-#include <opencv/cv.h>
-#include <opencv/cxcore.h>
-#include <vector>
-#include <algorithm>
-#include <iostream>
 #include "PoseEstimation.h"
 
 using namespace std;

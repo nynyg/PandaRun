@@ -1,16 +1,11 @@
-
 #define GLFW_INCLUDE_GLU
-#include <glfw/glfw3.h>
 //#include <GL/glew.h>
+#include "OSDetect.h"
 
 #include "DrawPrimitives.h"
 #include "GLUtility.hpp"
 #include <iostream>
 #include <iomanip>
-
-
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>

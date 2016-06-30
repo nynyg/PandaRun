@@ -8,7 +8,12 @@
 #ifndef Camera_hpp
 #define Camera_hpp
 
-#include <opencv/cv.h>
+#include "OSDetect.h"
+
+#if __AR_USER_ == 0
+    #include <opencv/cv.h>
+#endif
+
 #include <opencv/highgui.h>
 
 using namespace std;

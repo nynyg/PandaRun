@@ -8,6 +8,8 @@
 #ifndef DrawPanda_h
 #define DrawPanda_h
 
+#include "OSDetect.h"
+
 #include <glfw/glfw3.h>
 
 void drawPanda(float resultTransposedMatrix[16]){

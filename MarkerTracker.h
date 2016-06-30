@@ -1,7 +1,20 @@
 #ifndef MARKER_TRACKER_H
 #define MARKER_TRACKER_H
 
-#include <opencv/cv.h>
+#include "OSDetect.h"
+
+#include <iostream>
+
+#if __AR_USER_ == 0
+    #include <opencv/cv.h>
+#endif
+
+#include <opencv/highgui.h>
+
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+#include "PoseEstimation.h"
 
 class CvMemStorage;
 

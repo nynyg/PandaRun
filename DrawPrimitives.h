@@ -1,5 +1,6 @@
-
 #define GLFW_INCLUDE_GLU
+#include "OSDetect.h"
+
 #include <glfw/glfw3.h>
 //#include <GL/gl.h>
 

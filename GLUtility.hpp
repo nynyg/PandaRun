@@ -1,6 +1,5 @@
 //
 //  GLUtility.hpp
-//  OpenCVTest
 //
 //  Created by Nan on 16/6/26.
 //  Copyright © 2016 Nan. All rights reserved.
@@ -9,9 +8,15 @@
 #ifndef GLUtility_hpp
 #define GLUtility_hpp
 
+#include "OSDetect.h"
+
 #include <stdio.h>
 #include <glfw/glfw3.h>
-#include <opencv/cv.h>
+
+#if __AR_USER_ == 0
+    #include <opencv/cv.h>
+#endif
+
 #include <opencv/highgui.h>
 #include "DrawPanda.h"
 
@@ -44,7 +49,12 @@ void initGL(int argc, char *argv[])
     // pixel storage/packing stuff
     glPixelStorei( GL_PACK_ALIGNMENT,   1 ); // for glReadPixels
     glPixelStorei( GL_UNPACK_ALIGNMENT, 1 ); // for glTexImage2D
+    
+#if __AR_USER__ != 2
+    glPixelZoom( 2.0, -2.0 );
+#else
     glPixelZoom( 1.0, -1.0 );
+#endif
     
     // enable and set colors
     glEnable( GL_COLOR_MATERIAL );

@@ -1,8 +1,19 @@
 #pragma once
-#include <opencv/cv.h>
+#define _USE_MATH_DEFINES
 
+#include "OSDetect.h"
 
-	
+#include <math.h>
+
+#if __AR_USER_ == 0
+    #include <opencv/cv.h>
+#endif
+
+#include <opencv/cxcore.h>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
 /** 
  * computes the orientation and translation of a square
  * @param result result as 4x4 matrix
