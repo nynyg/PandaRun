@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#if __AR_USER_ == 0
+#if __AR_USER__ == 0
     #include <opencv/cv.h>
 #else
     #include <opencv2/opencv.hpp>
