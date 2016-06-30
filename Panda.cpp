@@ -15,7 +15,48 @@ void Panda::drawPanda(float resultTransposedMatrix[16]){
     glScalef(0.03, 0.03, 0.03);
     
     
-    //draw legs
+    //draw foot
+    glPushMatrix();
+    glRotatef(90, 0, 0, 0);
+    glTranslatef(-0.21,0,0);//left
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    drawCylinder(WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
+    glTranslatef(2*0.21,0,0);//right
+    drawCylinder(WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
+    glPopMatrix();
+   
+    
+    //draw tailor
+    glPushMatrix();
+    glRotatef(90, -1, 0, 0);
+    glTranslatef(0, 0.6*HEIGHT_BODY, 0.1);
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
+    drawSphere( WIDTH_TAIL, SLICES, STACKS );
+    glPopMatrix();
+    glPushMatrix();
+    
+    
+
+    
+    /**
+     calibrated by: 
+     rotatef(90, -1, 0, 0)
+     => glTranslatef(x,z,y)
+     */
+    //draw feet&shoes
+    glPushMatrix();
+    glRotatef(90, -1, 0, 0);
+    glTranslatef(-0.21,-0.7*WIDTH_LEGS,-1*HEIGHT_LEGS);//left
+    drawSphere( 0.8*WIDTH_FEET, SLICES, STACKS );
+    glTranslatef(2*0.21,0,0);//right
+    drawSphere( 0.8*WIDTH_FEET, SLICES, STACKS );
+    
+    glTranslatef(0,0.3*WIDTH_LEGS,-0.5*WIDTH_FEET);//right
+    drawCylinder(1.2*WIDTH_FEET, WIDTH_LEGS, HEIGHT_FEET, SLICES, STACKS);
+    glTranslatef(-2*0.21,0,0);//left
+    drawCylinder(1.4*WIDTH_FEET, WIDTH_LEGS, HEIGHT_FEET, SLICES, STACKS);
+    glPopMatrix();
+    
     
     //draw body
     glPushMatrix();
@@ -24,8 +65,41 @@ void Panda::drawPanda(float resultTransposedMatrix[16]){
     drawCylinder(BOTTOM_BODY, TOP_BODY, HEIGHT_BODY, SLICES, STACKS);
     glPopMatrix();
     
+    //draw left hand
+    glPushMatrix();
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    glRotatef( -90, 1, -0.4, 0 );//0.35 angle to left
+    glRotatef(10, -1, 0, 0);
+    glTranslatef(-1.6*TOP_BODY,-0.08,-0.01);//left   (x,y,-z)
+    
+    //normal   if 'jump' glRotatef(150, 0, -100, 0)
+    drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
+    
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
+    glTranslatef( -0.03, 0, 0);
+    drawSphere(WIDTH_ARMS, SLICES, STACKS);
+    glPopMatrix();
+    
+    //draw right hand
+    
+//    glPushMatrix();
+//    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+//    glRotatef( -90, 1, 0.35, 0 ); //0.35 angle to right
+//    glRotatef(10, 1, 0, 0);
+//    glTranslatef(1.6*TOP_BODY,-0.05,-0.01);//left   (x,y,-z)
+//    drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
+//    
+//    glColor4f( 0.0, 0.0, 0.0, 1.0 );
+//    glTranslatef( 0.03, 0, 0);
+//    drawSphere(WIDTH_ARMS, SLICES, STACKS);
+//    glPopMatrix();
+//    
+    
+    
+    
     //draw head
     glPushMatrix();
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
     glTranslatef(0, HEIGHT_BODY*1.3, 0);
     drawSphere( WIDTH_HEAD, SLICES, STACKS );
     glPopMatrix();
@@ -42,7 +116,10 @@ void Panda::drawPanda(float resultTransposedMatrix[16]){
     
     //draw ears
     glPushMatrix();
-    
+    glTranslatef(-0.31,HEIGHT_BODY*1.3+WIDTH_HEAD*0.8,0.1);//left
+    drawCylinder(HEIGHT_EAR, HEIGHT_EAR, THICKNESS_EAR, SLICES, STACKS);
+    glTranslatef(2*0.31,0,0);//right
+    drawCylinder(HEIGHT_EAR, HEIGHT_EAR, THICKNESS_EAR, SLICES, STACKS);
     glPopMatrix();
     
     
