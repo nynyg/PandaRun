@@ -34,10 +34,10 @@ int subpixSampleSafe ( const cv::Mat &pSrc, const cv::Point2f &p )
 void MarkerTracker::init()
 {
     std::cout << "Startup\n";
-    cv::namedWindow(kWinName1, CV_WINDOW_AUTOSIZE);
+//    cv::namedWindow(kWinName1, CV_WINDOW_AUTOSIZE);
     cv::namedWindow(kWinName2, CV_WINDOW_AUTOSIZE);
-    cv::namedWindow(kWinName3, CV_WINDOW_AUTOSIZE);
-    cv::namedWindow(kWinName4, CV_WINDOW_AUTOSIZE);
+//    cv::namedWindow(kWinName3, CV_WINDOW_AUTOSIZE);
+//    cv::namedWindow(kWinName4, CV_WINDOW_AUTOSIZE);
     //cvResizeWindow("Marker", 300, 300 );
     
     int max = 255;
@@ -54,10 +54,10 @@ void MarkerTracker::cleanup()
 {
     cvReleaseMemStorage (&memStorage);
     
-    cv::destroyWindow (kWinName1);
+//    cv::destroyWindow (kWinName1);
     cv::destroyWindow (kWinName2);
-    cv::destroyWindow (kWinName3);
-    cv::destroyWindow (kWinName4);
+//    cv::destroyWindow (kWinName3);
+//    cv::destroyWindow (kWinName4);
     std::cout << "Finished\n";
 }
 
@@ -259,7 +259,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                     {
                         cv::Mat iplTmp;
                         cv::resize( iplStripe, iplTmp, cv::Size(100,300) );
-                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
+//                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
                         isFirstStripe = false;
                     }
                     
@@ -431,7 +431,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
             {
                 cv::Mat markerTmp;
                 cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
-                cv::imshow ( kWinName4, markerTmp );
+//                cv::imshow ( kWinName4, markerTmp );
                 isFirstMarker = false;
             }
             
@@ -471,8 +471,8 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
 //            std::cout << "\n";
         } // end of loop over contours
         
-        cv::imshow(kWinName1, img_bgr);
-        cv::imshow(kWinName2, img_mono);
+//        cv::imshow(kWinName1, img_bgr);
+//        cv::imshow(kWinName2, img_mono);
         
         
         
