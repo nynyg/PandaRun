@@ -7,7 +7,7 @@ SS16 AR team project
 	#ifndef OSDetect_h
 	#define OSDetect_h
 
-	#define __AR_USER__ 0 // 1:Zhenzhang 2:Qunjie
+	#define __AR_USER__ 0 // 0:Nan 1:Zhenzhang 2:Qunjie
 
 	#endif /* OSDetect_h */
 	
