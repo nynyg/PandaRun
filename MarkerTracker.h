@@ -7,6 +7,8 @@
 
 #if __AR_USER_ == 0
     #include <opencv/cv.h>
+#else
+    #include <opencv2/opencv.hpp>
 #endif
 
 #include <opencv/highgui.h>

@@ -15,6 +15,8 @@
 
 #if __AR_USER_ == 0
     #include <opencv/cv.h>
+#else
+    #include <opencv2/opencv.hpp>
 #endif
 
 #include <opencv/highgui.h>
@@ -84,7 +86,7 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
     
     int width0, height0;
     glfwGetFramebufferSize(window, &width0, &height0);
-    //reshape(window, width0, height0);
+    reshape(window, width0, height0);
     
     // clear buffers
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );

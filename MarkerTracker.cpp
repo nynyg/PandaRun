@@ -267,7 +267,13 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16] )
                 
                 // we now have the array of exact edge centers stored in "points"
                 cv::Mat mat( cv::Size(1, 6), CV_32FC2, points);
+#if __AR_USER__ != 0
+                transpose(lineParamsMat, lineParamsMat);
+                cv::fitLine ( mat, lineParamsMat.col(i), CV_DIST_L2, 0, 0.01, 0.01 );
+                transpose(lineParamsMat, lineParamsMat);
+#else
                 cv::fitLine ( mat, lineParamsMat.row(i), CV_DIST_L2, 0, 0.01, 0.01 );
+#endif
                 // cvFitLine stores the calculated line in lineParams in the following way:
                 // vec.x, vec.y, point.x, point.y
                 
