@@ -20,7 +20,7 @@
 #endif
 
 #include <opencv/highgui.h>
-#include "DrawPanda.h"
+#include "Panda.h"
 
 void reshape( GLFWwindow* window, int width, int height ) {
     
@@ -121,7 +121,8 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
         }
     }
     
-    drawPanda(resultTransposedMatrix);
+    Panda panda1;
+    panda1.drawPanda(resultTransposedMatrix);
     
 }
 

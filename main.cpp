@@ -2,7 +2,6 @@
 //#include <GL/glew.h>
 #include "OSDetect.h"
 
-#include "DrawPrimitives.h"
 #include "GLUtility.hpp"
 #include <iostream>
 #include <iomanip>
@@ -10,7 +9,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "PoseEstimation.h"
 #include "MarkerTracker.h"
 #include "Camera.hpp"
 

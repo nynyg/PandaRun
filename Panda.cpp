@@ -1,18 +1,14 @@
 //
-//  DrawPanda.h
+//  Panda.cpp
 //
-//  Created by Nan on 16/6/26.
+//  Created by Nan on 16/6/30.
 //  Copyright © 2016 Nan. All rights reserved.
 //
 
-#ifndef DrawPanda_h
-#define DrawPanda_h
+#include "Panda.h"
+#include "DrawPrimitives.h"
 
-#include "OSDetect.h"
-
-#include <glfw/glfw3.h>
-
-void drawPanda(float resultTransposedMatrix[16]){
+void Panda::drawPanda(float resultTransposedMatrix[16]){
     //glLoadTransposeMatrixf( resultMatrix );
     glLoadMatrixf( resultTransposedMatrix );
     glRotatef( -90, 1, 0, 0 );
@@ -41,5 +37,3 @@ void drawPanda(float resultTransposedMatrix[16]){
     glRotatef( 90, 0, 1, 0 );
     drawCone( 0.1, 0.3, 10, 10 );
 }
-
-#endif /* DrawPanda_h */
