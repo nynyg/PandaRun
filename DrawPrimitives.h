@@ -51,3 +51,16 @@ void drawCone(GLdouble base, GLdouble height, GLint slices, GLint stacks)
     
     gluDeleteQuadric(quadric);
 }
+
+
+void drawCylinder(GLdouble base,GLdouble top,GLdouble height,GLint slices, GLint stacks)
+{
+    GLUquadricObj* quadric = gluNewQuadric();
+    gluQuadricDrawStyle(quadric, GLU_FILL);
+    gluQuadricOrientation(quadric,GLU_OUTSIDE);
+    //  gluQuadricNormals(quadric, GLU_SMOOTH);
+    gluCylinder(quadric, base, top, height, slices, stacks);
+    const GLdouble innerradius = 0.0;
+    gluDisk(quadric, innerradius, base, slices, stacks);
+    gluDeleteQuadric(quadric);
+}
