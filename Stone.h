@@ -14,13 +14,13 @@ class Stone{
     const int SLICES=40;
     const int STACKS=40;
     const float STONE_BOTTOM=0.16f;
-    const float STONE_MIDDLE =0.15f;
-    const float STONE_BASE_HEIGHT = 0.04f;
-    const float STONE_LEFT_RADIUS = 0.07f;
-    const float STONE_RIGHT_RADIUS = 0.03f;
+    const float STONE_MIDDLE =0.13f;
+    const float STONE_BASE_HEIGHT = 0.11f;
+    const float STONE_LEFT_RADIUS = 0.10f;
+    const float STONE_RIGHT_RADIUS = 0.05f;
     
    public:
-    void drawStone(float resultTransposedMatrix[16]);
+    void drawStones(float resultTransposedMatrix[16]);
 };
 
 #endif /* Stone_h */

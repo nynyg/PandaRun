@@ -10,7 +10,7 @@
 #include "DrawPrimitives.h"
 
 
-void Stone::drawStone(float resultMatrix[16]){
+void Stone::drawStones(float resultMatrix[16]){
     
     // move to marker-position
     
@@ -23,18 +23,38 @@ void Stone::drawStone(float resultMatrix[16]){
         }
     }
     glLoadMatrixf( resultTransposedMatrix );
+    glRotatef( -90, 1, 0, 0 ); //(x,z,-y) =>(x,y,z)
+    glScalef(0.05, 0.05, 0.05);
+  
     
     
-    
-  // light brown  153, 102, 51 dark brown 38, 26, 13
-    //draw bottom half
-    
+    //translate to the ground right to the feet of panda
+    glTranslatef(0.6,-0.4,0);//(x,z,-y)
+
+    //draw bottom base
     glPushMatrix();
-//  glRotatef(90, 0, 0, 0);
-    glTranslatef(-10,0,0);//left
-    glColor4f( 38, 26, 13, 1.0 );
+    glRotatef( -90, 1, 0, 0 );
+
+    glColor4f( 102.0f/255,  57.0f/255, 0.0f ,1.0);//dark brown
     drawCylinder(STONE_BOTTOM, STONE_MIDDLE, STONE_BASE_HEIGHT, SLICES, STACKS);
+    glPopMatrix();
     
+    //draw the  left half
+    glPushMatrix();
+    glTranslatef(-0.2*STONE_LEFT_RADIUS,0.4*STONE_LEFT_RADIUS+STONE_BASE_HEIGHT,0);//(x,y,z)
+    glColor4f( 153.0f/255,  79.0f/255, 0.0f ,1.0);//dark brown
+    drawSphere( STONE_LEFT_RADIUS, SLICES, STACKS );
+    glPopMatrix();
+    
+    //draw the right half
+    glPushMatrix();
+    glTranslatef(STONE_RIGHT_RADIUS,0.5*STONE_RIGHT_RADIUS+STONE_BASE_HEIGHT,0.08);//(x,y,z)
+    glColor4f( 77.0f/255,  38.0f/255, 0.0f ,1.0);//dark brown
+    drawSphere( STONE_RIGHT_RADIUS, SLICES, STACKS );
+
+
+    glPopMatrix();
+    //
     
     
     

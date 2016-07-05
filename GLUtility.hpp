@@ -22,6 +22,8 @@
 #include <opencv/highgui.h>
 #include "Panda.h"
 #include "Arrow.h"
+#include "Stone.h"
+
 
 void reshape( GLFWwindow* window, int width, int height ) {
     
@@ -113,8 +115,14 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
         glMatrixMode( GL_MODELVIEW );
         Panda panda1;
         panda1.drawPanda(resultMatrix);
-        Arrow arr1;
-        arr1.drawArrow(resultMatrix);
+//        Arrow arr1;
+//        arr1.drawArrow(resultMatrix);
+        
+        //prepare environment
+        Stone stones;
+        stones.drawStones(resultMatrix);
+        
+        
     }
 }
 
