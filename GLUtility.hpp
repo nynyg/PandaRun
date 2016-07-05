@@ -21,6 +21,7 @@
 
 #include <opencv/highgui.h>
 #include "Panda.h"
+#include "Arrow.h"
 
 void reshape( GLFWwindow* window, int width, int height ) {
     
@@ -72,11 +73,11 @@ void initGL(int argc, char *argv[])
     GLfloat light_dif[] = { 0.7, 0.7, 0.7, 1.0 };
     
     // enable lighting
-    glLightfv( GL_LIGHT0, GL_POSITION, light_pos );
-    glLightfv( GL_LIGHT0, GL_AMBIENT,  light_amb );
-    glLightfv( GL_LIGHT0, GL_DIFFUSE,  light_dif );
-    glEnable( GL_LIGHTING );
-    glEnable( GL_LIGHT0 );
+    //glLightfv( GL_LIGHT0, GL_POSITION, light_pos );
+    //glLightfv( GL_LIGHT0, GL_AMBIENT,  light_amb );
+    //glLightfv( GL_LIGHT0, GL_DIFFUSE,  light_dif );
+    //glEnable( GL_LIGHTING );
+    //glEnable( GL_LIGHT0 );
     
 }
 
@@ -112,6 +113,8 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
         glMatrixMode( GL_MODELVIEW );
         Panda panda1;
         panda1.drawPanda(resultMatrix);
+        Arrow arr1;
+        arr1.drawArrow(resultMatrix);
     }
 }
 

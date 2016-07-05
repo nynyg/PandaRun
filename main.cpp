@@ -11,6 +11,8 @@
 
 #include "MarkerTracker.h"
 #include "Camera.hpp"
+#include "Panda.h"
+#include "Arrow.h"
 
 using namespace std;
 
@@ -68,7 +70,7 @@ int main(int argc, char* argv[])
         bool foundPanda = false;
         markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda);
         if(!isStart){
-            int key = cvWaitKey(500);
+            int key = cvWaitKey(200);
             if(key == 32){
                 
                 isStart = true;

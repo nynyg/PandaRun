@@ -452,7 +452,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
                 }
                 
             estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );
-            printf ("Found: %4x\n", code);
+            //printf ("Found: %4x\n", code);
             }
             else{
                 found = false;
