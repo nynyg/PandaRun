@@ -12,9 +12,10 @@
 
 class Panda{
 public:
-    void drawPanda(float resultTransposedMatrix[16]);
+    void drawPanda(float resultTransposedMatrix[16],int position);
     void drawArrow(float resultTransposedMatrix[4][16]);
-    void drawStone(float resultTransposedMatrix[16]);
-    void drawBamboo(float resultTransposedMatrix[16]);
+    void drawLines(float resultTransposedMatrix[16]);
+    void drawStone(float resultTransposedMatrix[16],int position,int scale);
+    void drawBamboo(float resultTransposedMatrix[16],int position,int scale);
 };
 #endif /* Panda_h */
