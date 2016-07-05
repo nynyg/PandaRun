@@ -24,7 +24,7 @@ class Panda{
     const float WIDTH_ARMS=0.12f;
     const float LENGTH_ARMS=0.5f;
     const float WIDTH_HAND=0.13f;
-    const float HEIGHT_LEGS=0.3f;
+    const float HEIGHT_LEGS=0.4f;
     const float WIDTH_LEGS=0.155f;
     const float WIDTH_FEET=0.165f;
     const float HEIGHT_FEET=0.13f;
