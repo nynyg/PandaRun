@@ -78,9 +78,9 @@ void Panda::drawPanda(float resultMatrix[16]){
     //draw left hand
     glPushMatrix();
     glColor4f( 1.0, 1.0, 1.0, 1.0 );
-    glRotatef( -90, 1, -0.4, 0 );//0.35 angle to left
-    glRotatef(10, -1, 0, 0);
-    glTranslatef(-1.6*TOP_BODY,-0.08,-0.01);//left   (x,y,-z)
+    glRotatef( -90, 1, -0.4, 0 );//-0.4 angle to left
+//    glRotatef(10, 1, 0, 0);
+    glTranslatef(-1.6*TOP_BODY,0.18,-0.04);//left   (x,-z,y)
     
     //normal   if 'jump' glRotatef(150, 0, -100, 0)
     drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
@@ -91,6 +91,22 @@ void Panda::drawPanda(float resultMatrix[16]){
     glPopMatrix();
     
     //draw right hand
+    
+    glPushMatrix();
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    glRotatef( -90, 1, 0.4, 0 );//0.35 angle to right
+    glTranslatef(1.6*TOP_BODY,0.18,-0.04);//right   (x,-z,y)
+
+    //normal   if 'jump' glRotatef(150, 0, -100, 0)
+    drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
+    
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
+    glTranslatef( 0.03, 0, 0);
+    drawSphere(WIDTH_ARMS, SLICES, STACKS);
+    glPopMatrix();
+
+    
+    
     
 //    glPushMatrix();
 //    glColor4f( 1.0, 1.0, 1.0, 1.0 );
