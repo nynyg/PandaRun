@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
         bool foundPanda = false;
         markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda);
         if(!isStart){
-            int key = cvWaitKey(50);
+            int key = cvWaitKey(500);
             if(key == 32){
                 
                 isStart = true;

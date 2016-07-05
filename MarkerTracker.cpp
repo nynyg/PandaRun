@@ -451,12 +451,15 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
                     corners[i].y = -corners[i].y + img_bgr.rows*0.5; //here you have to use your own camera resolution (y) * 0.5
                 }
                 
-                estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );
+            estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );
+            printf ("Found: %4x\n", code);
+
             }
             else{
                 found = false;
                 //cout<<"Panda disappeared!";
             }
+
             
             //this part is only for printing
             //            for (int i = 0; i<4; ++i) {
