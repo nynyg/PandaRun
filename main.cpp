@@ -47,10 +47,10 @@ int main(int argc, char* argv[])
     
     // setup OpenCV
     cv::Mat img_bgr;
-    const double kMarkerSize = 0.08; // [m]
+    const double kMarkerSize = 0.044; // [m]
     MarkerTracker markerTracker(kMarkerSize);
     
-    float resultMatrix[16];
+    float resultMatrix[4][16] = {-1};
     /* Loop until the user closes the window */
     unsigned char bkgnd[camera.getWidth()*camera.getHeight()*3];
     while (!glfwWindowShouldClose(window))
@@ -66,8 +66,12 @@ int main(int argc, char* argv[])
         }
         
         /* Track a marker */
-        int pandaMarker = 0x0690;
-        bool foundPanda = false;
+        vector<bool> foundPanda(4, false);
+        vector<int> pandaMarker(4, 0);
+        pandaMarker[0] = 0x0690;//LPanda
+        pandaMarker[1] = 0x1C44;//RPanda
+        pandaMarker[2] = 0x1228;//Left
+        pandaMarker[3] = 0x0B44;//Right
         markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda);
         if(!isStart){
             int key = cvWaitKey(200);
@@ -78,8 +82,28 @@ int main(int argc, char* argv[])
             }
         }
         /* Render here */
-        display(window, img_bgr, resultMatrix, bkgnd, camera.getWidth(), camera.getHeight(), isStart);
-        
+        display(window, img_bgr, resultMatrix[0], bkgnd, camera.getWidth(), camera.getHeight(), isStart);
+        if(isStart){
+            glMatrixMode( GL_MODELVIEW );
+            //Panda panda1;
+            //panda1.drawPanda(resultMatrix);
+            if(foundPanda[2]){
+                Arrow arr1;
+                arr1.drawArrow(resultMatrix[2]);
+            }
+            if(foundPanda[3]){
+                Arrow arr2;
+                arr2.drawArrow(resultMatrix[3]);
+            }
+            if(foundPanda[0]){
+                Panda pandaL;
+                pandaL.drawPanda(resultMatrix[0]);
+            }
+            if(foundPanda[1]){
+                Panda pandaR;
+                pandaR.drawPanda(resultMatrix[1]);
+            }
+        }
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
         

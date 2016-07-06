@@ -20,8 +20,9 @@ void Arrow::drawArrow(float resultMatrix[16]){
     glLoadMatrixf(resultTransposedMatrix);
     glScalef(0.03, 0.03, 0.03);
     glColor4f( 1, 1, 0, 1.0 );
-    glRotatef( -90, 0, 0, 0 );
-    drawCylinder(0.25,0.25,0.75,40,40);
-    glTranslatef(2*0.21,0,0);
+    glRotatef( -90, 1, 0, 0 );
+    drawCylinder(0.1,0.1,0.75,40,40);
+    glTranslatef(0,0,0.75);
+    drawCone(0.2, 0.3, 40, 40);
     
 }

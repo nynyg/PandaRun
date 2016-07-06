@@ -34,10 +34,10 @@ int subpixSampleSafe ( const cv::Mat &pSrc, const cv::Point2f &p )
 void MarkerTracker::init()
 {
     std::cout << "Startup\n";
-//    cv::namedWindow(kWinName1, CV_WINDOW_AUTOSIZE);
+    //    cv::namedWindow(kWinName1, CV_WINDOW_AUTOSIZE);
     cv::namedWindow(kWinName2, CV_WINDOW_AUTOSIZE);
-//    cv::namedWindow(kWinName3, CV_WINDOW_AUTOSIZE);
-//    cv::namedWindow(kWinName4, CV_WINDOW_AUTOSIZE);
+    //    cv::namedWindow(kWinName3, CV_WINDOW_AUTOSIZE);
+    //    cv::namedWindow(kWinName4, CV_WINDOW_AUTOSIZE);
     //cvResizeWindow("Marker", 300, 300 );
     
     int max = 255;
@@ -54,14 +54,14 @@ void MarkerTracker::cleanup()
 {
     cvReleaseMemStorage (&memStorage);
     
-//    cv::destroyWindow (kWinName1);
+    //    cv::destroyWindow (kWinName1);
     cv::destroyWindow (kWinName2);
-//    cv::destroyWindow (kWinName3);
-//    cv::destroyWindow (kWinName4);
+    //    cv::destroyWindow (kWinName3);
+    //    cv::destroyWindow (kWinName4);
     std::cout << "Finished\n";
 }
 
-void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __code, bool &found)
+void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[4][16], const vector<int> &__code, vector<bool> &found)
 {
     bool isFirstStripe = true;
     
@@ -259,7 +259,7 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
                     {
                         cv::Mat iplTmp;
                         cv::resize( iplStripe, iplTmp, cv::Size(100,300) );
-//                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
+                        //                        cv::imshow ( kWinName3, iplTmp );//iplStripe );
                         isFirstStripe = false;
                     }
                     
@@ -424,17 +424,18 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
                     angle = i;
                 }
             }
-            
-            if(code == __code){
-                found = true;
+            auto it = std::find(__code.begin(), __code.end(), code);
+            if(it != __code.end()){
+                auto index = distance(__code.begin(), it);
+                found[index] = true;
                 //printf ("Found: Panda!\n");
-                if ( isFirstMarker )
-                {
-                    cv::Mat markerTmp;
-                    cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
-                    cv::imshow ( kWinName4, markerTmp );
-                    isFirstMarker = false;
-                }
+//                if ( isFirstMarker )
+//                {
+//                    cv::Mat markerTmp;
+//                    cv::resize( iplMarker, markerTmp, cv::Size(300,300) );
+//                    cv::imshow ( kWinName4, markerTmp );
+//                    isFirstMarker = false;
+//                }
                 
                 //correct the order of the corners
                 if(angle != 0)
@@ -451,14 +452,14 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
                     corners[i].y = -corners[i].y + img_bgr.rows*0.5; //here you have to use your own camera resolution (y) * 0.5
                 }
                 
-            estimateSquarePose( resultMatrix, (cv::Point2f*)corners, kMarkerSize );
-            //printf ("Found: %4x\n", code);
+                estimateSquarePose( resultMatrix[index], (cv::Point2f*)corners, kMarkerSize );
+                //printf ("Found: %4x\n", code);
             }
             else{
-                found = false;
+                //found = false;
                 //cout<<"Panda disappeared!";
             }
-
+            
             
             //this part is only for printing
             //            for (int i = 0; i<4; ++i) {
@@ -478,8 +479,8 @@ void MarkerTracker::findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __
             //            std::cout << "\n";
         } // end of loop over contours
         
-//        cv::imshow(kWinName1, img_bgr);
-//        cv::imshow(kWinName2, img_mono);
+        //        cv::imshow(kWinName1, img_bgr);
+        //        cv::imshow(kWinName2, img_mono);
         
         
         

@@ -4,6 +4,7 @@
 #include "OSDetect.h"
 
 #include <iostream>
+#include <vector>
 
 #if __AR_USER__ == 0
     #include <opencv/cv.h>
@@ -17,6 +18,8 @@
 #include <math.h>
 
 #include "PoseEstimation.h"
+
+using namespace std;
 
 class CvMemStorage;
 
@@ -44,7 +47,7 @@ public:
 	~MarkerTracker(){
 		cleanup();
 	}
-	void findMarker( cv::Mat &img_bgr, float resultMatrix[16], int __code, bool &found);
+	void findMarker( cv::Mat &img_bgr, float resultMatrix[4][16], const vector<int> &__code, vector<bool> &found);
 protected:
 	void init( );
 	void cleanup( );

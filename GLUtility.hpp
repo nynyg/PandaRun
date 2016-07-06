@@ -109,13 +109,6 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
     glPopMatrix();
     
     glEnable(GL_DEPTH_TEST);
-    if(isStart){
-        glMatrixMode( GL_MODELVIEW );
-        Panda panda1;
-        panda1.drawPanda(resultMatrix);
-        Arrow arr1;
-        arr1.drawArrow(resultMatrix);
-    }
 }
 
 
