@@ -20,9 +20,13 @@ void Panda::drawPanda(float resultMatrix[16]){
             resultTransposedMatrix[x*4+y] = resultMatrix[y*4+x];
         }
     }
+    
     glLoadMatrixf( resultTransposedMatrix );
     glRotatef( -90, 1, 0, 0 );
     glScalef(0.03, 0.03, 0.03);
+    
+    
+    
     
     
     //draw foot
@@ -34,7 +38,7 @@ void Panda::drawPanda(float resultMatrix[16]){
     glTranslatef(2*0.21,0,0);//right
     drawCylinder(WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
     glPopMatrix();
-   
+    
     
     //draw tailor
     glPushMatrix();
@@ -46,10 +50,10 @@ void Panda::drawPanda(float resultMatrix[16]){
     glPushMatrix();
     
     
-
+    
     
     /**
-     calibrated by: 
+     calibrated by:
      rotatef(90, -1, 0, 0)
      => glTranslatef(x,z,y)
      */
@@ -78,13 +82,11 @@ void Panda::drawPanda(float resultMatrix[16]){
     //draw left hand
     glPushMatrix();
     glColor4f( 1.0, 1.0, 1.0, 1.0 );
-    glRotatef( -90, 1, -0.4, 0 );//0.35 angle to left
-    glRotatef(10, -1, 0, 0);
-    glTranslatef(-1.6*TOP_BODY,-0.08,-0.01);//left   (x,y,-z)
-    
+    glRotatef( -90, 1, -0.4, 0 );//-0.4 angle to left
+    //    glRotatef(10, 1, 0, 0);
+    glTranslatef(-1.5*TOP_BODY,0.18,-0.04);//left   (x,-z,y)
     //normal   if 'jump' glRotatef(150, 0, -100, 0)
     drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
-    
     glColor4f( 0.0, 0.0, 0.0, 1.0 );
     glTranslatef( -0.03, 0, 0);
     drawSphere(WIDTH_ARMS, SLICES, STACKS);
@@ -92,19 +94,16 @@ void Panda::drawPanda(float resultMatrix[16]){
     
     //draw right hand
     
-//    glPushMatrix();
-//    glColor4f( 1.0, 1.0, 1.0, 1.0 );
-//    glRotatef( -90, 1, 0.35, 0 ); //0.35 angle to right
-//    glRotatef(10, 1, 0, 0);
-//    glTranslatef(1.6*TOP_BODY,-0.05,-0.01);//left   (x,y,-z)
-//    drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
-//    
-//    glColor4f( 0.0, 0.0, 0.0, 1.0 );
-//    glTranslatef( 0.03, 0, 0);
-//    drawSphere(WIDTH_ARMS, SLICES, STACKS);
-//    glPopMatrix();
-//    
-    
+    glPushMatrix();
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    glRotatef( -90, 1, 0.4, 0 );//0.35 angle to right
+    glTranslatef(1.5*TOP_BODY,0.18,-0.04);//right   (x,-z,y)
+    //normal   if 'jump' glRotatef(150, 0, -100, 0)
+    drawCylinder( WIDTH_ARMS, WIDTH_ARMS, LENGTH_ARMS, SLICES, STACKS);
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
+    glTranslatef( 0.03, 0, 0);
+    drawSphere(WIDTH_ARMS, SLICES, STACKS);
+    glPopMatrix();
     
     
     //draw head
@@ -123,36 +122,21 @@ void Panda::drawPanda(float resultMatrix[16]){
     drawSphere( WIDTH_EYES,SLICES,STACKS);
     glPopMatrix();
     
+    //draw eyes
+    glPushMatrix();
+    glTranslatef(-1.1*WIDTH_EYES, HEIGHT_BODY*1.3+WIDTH_HEAD*0.2, 0.95*WIDTH_HEAD);
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    drawSphere( 0.25*WIDTH_EYES,SLICES,STACKS);
+    glTranslatef(2.2*WIDTH_EYES, 0.0f, 0.0f);
+    drawSphere( 0.25*WIDTH_EYES,SLICES,STACKS);
+    glPopMatrix();
     
     //draw ears
     glPushMatrix();
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
     glTranslatef(-0.31,HEIGHT_BODY*1.3+WIDTH_HEAD*0.8,0.1);//left
     drawCylinder(HEIGHT_EAR, HEIGHT_EAR, THICKNESS_EAR, SLICES, STACKS);
     glTranslatef(2*0.31,0,0);//right
     drawCylinder(HEIGHT_EAR, HEIGHT_EAR, THICKNESS_EAR, SLICES, STACKS);
     glPopMatrix();
-    
-    
-    // draw 3 white spheres
-    //    glColor4f( 1.0, 1.0, 1.0, 1.0 );
-    ////    drawSphere( 0.8, 10, 10 );
-    ////    glTranslatef( 0.0, 0.8, 0.0 );
-    //    drawSphere( 0.7, 10, 10 );
-    //    glTranslatef( 0.0, 0.65, 0.0 );
-    //    drawSphere( 0.4, 10, 10 );
-    //
-    //    // draw the eyes
-    //    glPushMatrix();
-    //    glColor4f( 0.0, 0.0, 0.0, 1.0 );
-    //    glTranslatef( 0.2, 0.2, 0.2 );
-    //    drawSphere( 0.066, 10, 10 );
-    //    glTranslatef( 0, 0, -0.4 );
-    //    drawSphere( 0.066, 10, 10 );
-    //    glPopMatrix();
-    //
-    //    // draw a nose
-    //    glColor4f( 1.0, 0.5, 0.0, 1.0 );
-    //    glTranslatef( 0.3, 0.0, 0.0 );
-    //    glRotatef( 90, 0, 1, 0 );
-    //    drawCone( 0.1, 0.3, 10, 10 );
 }

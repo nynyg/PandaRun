@@ -23,10 +23,15 @@
 #include "Panda.h"
 #include "Arrow.h"
 
+#include <iostream>
+using namespace std;
+
 void reshape( GLFWwindow* window, int width, int height ) {
     
     // set a whole-window viewport
+    cout<<width<<endl;
     glViewport( 0, 0, (GLsizei)width, (GLsizei)height );
+    //cout<<width<<endl;
     
     // create a perspective projection matrix
     glMatrixMode(GL_PROJECTION);
@@ -38,7 +43,7 @@ void reshape( GLFWwindow* window, int width, int height ) {
     // If you are using another camera (which you'll do in most cases), you'll have to adjust the FOV
     // value. How? Fiddle around: Move Marker to edge of display and check if you have to increase or
     // decrease.
-    gluPerspective( 30 , ((GLfloat)width/(GLfloat)height), 0.01, 100 );
+    gluPerspective( 43 , ((GLfloat)width/(GLfloat)height), 0.01, 100 );
     
     // invalidate display
     //glutPostRedisplay();

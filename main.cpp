@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
     GLFWwindow* window;
     if (!glfwInit())
         return -1;
-    window = glfwCreateWindow(camera.getWidth(), camera.getWidth(), "PandaRun", NULL, NULL);
+    window = glfwCreateWindow(camera.getWidth(), camera.getHeight(), "PandaRun", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     
     // setup OpenCV
     cv::Mat img_bgr;
-    const double kMarkerSize = 0.044; // [m]
+    const double kMarkerSize = 0.034; // [m]
     MarkerTracker markerTracker(kMarkerSize);
     
     float resultMatrix[4][16] = {-1};
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
         pandaMarker[1] = 0x1C44;//RPanda
         pandaMarker[2] = 0x1228;//Left
         pandaMarker[3] = 0x0B44;//Right
-        markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda);
+        markerTracker.findMarker( img_bgr, resultMatrix, pandaMarker, foundPanda, isStart);
         if(!isStart){
             int key = cvWaitKey(200);
             if(key == 32){

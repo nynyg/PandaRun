@@ -10,6 +10,8 @@
 #include <iostream>
 #include <ctime>
 
+using namespace std;
+
 void Gamer::setMatrix(float (*resultMatrix)[16]){
     std::memcpy(leftPanda, resultMatrix[0], sizeof(float)*16);
     std::memcpy(rightPanda, resultMatrix[1], sizeof(float)*16);
@@ -38,7 +40,7 @@ void Gamer::playGame(std::vector<bool> &markers){
         current_pos = 2;
     }
     count++;
-    if(count%20 == 0){
+    if(count%30 == 0){
         srand(rand());
         int left_num = rand()%3-1;
         int right_num = rand()%3-1;
@@ -111,14 +113,15 @@ void Gamer::showGold(cv::Mat &img){
     cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, hScale,vScale,0,lineWidth);
     IplImage arr = img;
     char show_msg[20] = "Grade: ";
-    std::string s = std::to_string(current_life);
+    std::string s = std::to_string(current_grade);
     std::strcpy((show_msg+7), s.c_str());
     cvPutText(&arr, show_msg, cv::Point(800,100),&font, cv::Scalar(0,0,0));
     img = cv::cvarrToMat(&arr);
 }
 
 void Gamer::getTrans(float *matrix, double step){
-    matrix[7] += step/1000;
+    matrix[7] = step/1000;
+    cout<<matrix[7]<<endl;
 }
 
 void Gamer::showLife(cv::Mat &img){
