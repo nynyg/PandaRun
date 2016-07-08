@@ -23,6 +23,8 @@
 #include "Panda.h"
 #include "Arrow.h"
 #include "Stone.h"
+#include "Bamboo.h"
+#include "Firecracker.h"
 
 
 void reshape( GLFWwindow* window, int width, int height ) {
@@ -122,6 +124,11 @@ void display( GLFWwindow* window, const cv::Mat &img_bgr, float resultMatrix[16]
         Stone stones;
         stones.drawStones(resultMatrix);
         
+        Bamboo bamboos;
+        bamboos.drawBamboo(resultMatrix);
+        
+        Firecracker firecrackers;
+        firecrackers.drawFirecracker(resultMatrix);
         
     }
 }

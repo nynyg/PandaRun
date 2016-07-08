@@ -29,11 +29,11 @@ void Stone::drawStones(float resultMatrix[16]){
     
     
     //translate to the ground right to the feet of panda
-    glTranslatef(0.6,-0.4,0);//(x,z,-y)
+    glTranslatef(0.6,-0.4,0);
 
     //draw bottom base
     glPushMatrix();
-    glRotatef( -90, 1, 0, 0 );
+    glRotatef( -90, 1, 0, 0 );//(x,z,-y)
 
     glColor4f( 102.0f/255,  57.0f/255, 0.0f ,1.0);//dark brown
     drawCylinder(STONE_BOTTOM, STONE_MIDDLE, STONE_BASE_HEIGHT, SLICES, STACKS);

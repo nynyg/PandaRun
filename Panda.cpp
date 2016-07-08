@@ -120,10 +120,19 @@ void Panda::drawPanda(float resultMatrix[16]){
     glTranslatef(1.6*WIDTH_EYES, 0.0f, 0.0f);
     drawSphere( WIDTH_EYES,SLICES,STACKS);
     glPopMatrix();
-    
+
+    //draw eyes
+    glPushMatrix();
+    glTranslatef(-1.1*WIDTH_EYES, HEIGHT_BODY*1.3+WIDTH_HEAD*0.2, 0.95*WIDTH_HEAD);
+    glColor4f( 1.0, 1.0, 1.0, 1.0 );
+    drawSphere( 0.25*WIDTH_EYES,SLICES,STACKS);
+    glTranslatef(2.2*WIDTH_EYES, 0.0f, 0.0f);
+    drawSphere( 0.25*WIDTH_EYES,SLICES,STACKS);
+    glPopMatrix();
     
     //draw ears
     glPushMatrix();
+    glColor4f( 0.0, 0.0, 0.0, 1.0 );
     glTranslatef(-0.31,HEIGHT_BODY*1.3+WIDTH_HEAD*0.8,0.1);//left
     drawCylinder(HEIGHT_EAR, HEIGHT_EAR, THICKNESS_EAR, SLICES, STACKS);
     glTranslatef(2*0.31,0,0);//right
