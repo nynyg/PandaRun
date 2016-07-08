@@ -13,6 +13,7 @@
 #include "Camera.hpp"
 #include "Panda.h"
 #include "Arrow.h"
+#include "Gamer.hpp"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ bool isStart = false;
 int main(int argc, char* argv[])
 {
     Camera camera;
+    Gamer game;
     GLFWwindow* window;
     if (!glfwInit())
         return -1;
@@ -76,10 +78,16 @@ int main(int argc, char* argv[])
         if(!isStart){
             int key = cvWaitKey(200);
             if(key == 32){
-                
                 isStart = true;
                 cout<<"game start!";
             }
+        }
+        
+        if(isStart){
+            game.setMatrix(resultMatrix);
+            game.playGame(foundPanda);
+            game.showLife(img_bgr);
+            game.showGold(img_bgr);
         }
         /* Render here */
         display(window, img_bgr, resultMatrix[0], bkgnd, camera.getWidth(), camera.getHeight(), isStart);
@@ -103,6 +111,7 @@ int main(int argc, char* argv[])
                 Panda pandaR;
                 pandaR.drawPanda(resultMatrix[1]);
             }
+            game.drawStuff();
         }
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
