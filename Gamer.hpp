@@ -36,14 +36,19 @@ public:
     void showGold(cv::Mat &img);
     bool isOver();
     void gameOver(cv::Mat &img);
+    void setDifficult();
     void playBGM();
 private:
     float leftPanda[16];
+    int current_level = 1;
     short current_life;
     float rightPanda[16];
     short current_pos = 1;
     int current_grade = 0;
     int count = 0;
+    int interval = 30;
+    int step_max = 47;
+    int step_each = 250;
     std::list<Stuff> leftList,rightList;
 };
 #endif /* Gamer_hpp */

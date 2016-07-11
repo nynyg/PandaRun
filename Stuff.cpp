@@ -31,47 +31,48 @@ void Stuff::drawBamboo(float resultMatrix[16]){
     }
     glLoadMatrixf( resultTransposedMatrix );
     glRotatef( -90, 1, 0, 0 ); //(x,z,-y) =>(x,y,z)
-    glScalef(0.07, 0.07, 0.07);
+    glScalef(0.05, 0.05, 0.05);
     
     //translate to left of the panda
     //glTranslatef(-0.8,0,0);//(x,y,z)
-    
+           glRotatef( -90, 1, 0.35, 0 );//(x,z,-y) angle to left
     //upper
     glPushMatrix();
-    glColor4f( 0.0f,  77.0f/255, 0.0f ,1.0);
-    glRotatef( -90, 1, 0, 0 );//(x,z,-y)
+    glColor4f( 0.0f,  120.0f/255, 0.0f ,1.0);
+
+//    glRotatef( -90, 1, 0, 0 );//(x,z,-y)
     drawCylinder(BAMBOO_WIDTH_MIDDLE, BAMBOO_WIDTH, BAMBOO_HEIGHT_UP, SLICES, STACKS);//draw from bottom to up
     glPopMatrix();
     
     //middle
     glPushMatrix();
-    glColor4f( 0.0f,  51.0f/255, 0.0f ,1.0);
-    glRotatef( -90, 1, 0, 0 );//(x,z,y)
+    glColor4f( 0.0f,  77.0f/255, 0.0f ,1.0);
+//    glRotatef( -90, 1, 0, 0 );//(x,z,y)
     glTranslatef(0,0,-BAMBOO_HEIGHT_MIDDLE);
     drawCylinder(BAMBOO_WIDTH_MIDDLE, BAMBOO_WIDTH_MIDDLE, BAMBOO_HEIGHT_MIDDLE, SLICES, STACKS);
     glPopMatrix();
     
     //bottom
     glPushMatrix();
-    glColor4f( 0.0f,  77.0f/255, 0.0f ,1.0);
-    glRotatef( -90, 1, 0, 0 );
+    glColor4f( 0.0f,  120.0f/255, 0.0f ,1.0);
+//    glRotatef( -90, 1, 0, 0 );
     glTranslatef(0,0, -1*(BAMBOO_HEIGHT_MIDDLE+BAMBOO_HEIGHT_BOTTOM));
     drawCylinder(BAMBOO_WIDTH, BAMBOO_WIDTH_MIDDLE, BAMBOO_HEIGHT_BOTTOM, SLICES, STACKS);
     glPopMatrix();
     
     //left branch
     glPushMatrix();
-    glColor4f( 0.0f,  77.0f/255, 0.0f ,1.0);
-    glRotatef( -90, 1, 0.5, 0 );//-0.5 angle to left
+    glColor4f( 0.0f,  120.0f/255, 0.0f ,1.0);
+    glRotatef( 60,0, 1, 0 );//-0.5 angle to left
     glTranslatef(-0.3*BAMBOO_WIDTH,0, 0.15*BAMBOO_HEIGHT_UP);
     drawCylinder(BAMBOO_BRANCH_WIDTH, BAMBOO_BRANCH_WIDTH*0.85, BAMBOO_BRANCH_HEIGHT, SLICES, STACKS);
     glPopMatrix();
     
     //right branch
     glPushMatrix();
-    glColor4f( 0.0f,  77.0f/255, 0.0f ,1.0);
-    glRotatef( -90, 1, -0.5, 0 );//-0.4 angle to right
-    glTranslatef(3.5*BAMBOO_WIDTH,0, -BAMBOO_HEIGHT_UP);
+    glColor4f( 0.0f,  120.0f/255, 0.0f ,1.0);
+    glRotatef( 120, 0,1, 0 );//-0.4 angle to right
+    glTranslatef(0.5*BAMBOO_WIDTH,0, -1.1*BAMBOO_HEIGHT_UP);
     drawCylinder(BAMBOO_BRANCH_WIDTH, BAMBOO_BRANCH_WIDTH*0.8, BAMBOO_BRANCH_HEIGHT*1.25, SLICES, STACKS);
     glPopMatrix();
 }

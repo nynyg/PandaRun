@@ -22,7 +22,7 @@ bool isStart = false;
 int main(int argc, char* argv[])
 {
     Camera camera;
-    Gamer game(50);
+    Gamer game(3);
     GLFWwindow* window;
     if (!glfwInit())
         return -1;
@@ -83,6 +83,7 @@ int main(int argc, char* argv[])
             }
         }
         if(isStart && !game.isOver()){
+//            game.setDifficult();
             game.setMatrix(resultMatrix);
             game.playGame(foundPanda);
             game.showLife(img_bgr);
