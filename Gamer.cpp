@@ -17,6 +17,22 @@ void Gamer::setMatrix(float (*resultMatrix)[16]){
     std::memcpy(rightPanda, resultMatrix[1], sizeof(float)*16);
 }
 
+bool Gamer::isOver(){
+    return (current_life==0);
+}
+
+void Gamer::gameOver(cv::Mat &img){
+    CvFont font;
+    double hScale=2;
+    double vScale=2;
+    int lineWidth=3;
+    cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, hScale,vScale,0,lineWidth);
+    IplImage arr = img;
+    char show_msg[11] = "Game Over!";
+    cvPutText(&arr, show_msg, cv::Point(800,100),&font, cv::Scalar(0,0,0));
+    img = cv::cvarrToMat(&arr);
+}
+
 void Gamer::playGame(std::vector<bool> &markers){
     if(current_pos == 1){
         markers[0] = true;
@@ -40,7 +56,7 @@ void Gamer::playGame(std::vector<bool> &markers){
         current_pos = 2;
     }
     count++;
-    if(count%30 == 0){
+    if(count%50 == 0){
         srand(rand());
         int left_num = rand()%3-1;
         int right_num = rand()%3-1;
@@ -64,14 +80,14 @@ void Gamer::drawStuff(){
     std::memcpy(tempRPanda, rightPanda, sizeof(float)*16);
     std::list<Stuff>::iterator it;
     for(it = leftList.begin();it!=leftList.end();it++){
-        tempLPanda[7] = leftPanda[7];
+        tempLPanda[7] = leftPanda[7]-0.09;
         getTrans(tempLPanda, it->step++);
         if(it->getType() == 1){
             it->drawBamboo(tempLPanda);
         }else if (it->getType()==-1){
             it->drawStone(tempLPanda);
         }
-        if(it->step == 50){
+        if(it->step == 20){
             if(current_pos == 1){
                 if(it->getType() == 1){
                     current_grade++;
@@ -84,14 +100,14 @@ void Gamer::drawStuff(){
         }
     }
     for(it = rightList.begin();it!=rightList.end();it++){
-        tempRPanda[7] = rightPanda[7];
+        tempRPanda[7] = rightPanda[7]-0.09;
         getTrans(tempRPanda,it->step++);
         if(it->getType() == 1){
             it->drawBamboo(tempRPanda);
         }else if (it->getType()==-1){
             it->drawStone(tempRPanda);
         }
-        if(it->step == 50){
+        if(it->step == 20){
             if(current_pos == 2){
                 if(it->getType() == 1){
                     current_grade++;
@@ -120,8 +136,7 @@ void Gamer::showGold(cv::Mat &img){
 }
 
 void Gamer::getTrans(float *matrix, double step){
-    matrix[7] = step/1000;
-    cout<<matrix[7]<<endl;
+    matrix[7] += step/200;
 }
 
 void Gamer::showLife(cv::Mat &img){

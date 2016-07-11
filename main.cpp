@@ -22,7 +22,7 @@ bool isStart = false;
 int main(int argc, char* argv[])
 {
     Camera camera;
-    Gamer game;
+    Gamer game(50);
     GLFWwindow* window;
     if (!glfwInit())
         return -1;
@@ -82,16 +82,18 @@ int main(int argc, char* argv[])
                 cout<<"game start!";
             }
         }
-        
-        if(isStart){
+        if(isStart && !game.isOver()){
             game.setMatrix(resultMatrix);
             game.playGame(foundPanda);
             game.showLife(img_bgr);
             game.showGold(img_bgr);
         }
+        if (game.isOver()){
+            game.gameOver(img_bgr);
+        }
         /* Render here */
         display(window, img_bgr, resultMatrix[0], bkgnd, camera.getWidth(), camera.getHeight(), isStart);
-        if(isStart){
+        if(!game.isOver() && isStart){
             glMatrixMode( GL_MODELVIEW );
             //Panda panda1;
             //panda1.drawPanda(resultMatrix);
@@ -111,7 +113,9 @@ int main(int argc, char* argv[])
                 Panda pandaR;
                 pandaR.drawPanda(resultMatrix[1]);
             }
-            game.drawStuff();
+            if(!game.isOver()){
+                game.drawStuff();
+            }
         }
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

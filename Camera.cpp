@@ -10,7 +10,7 @@
 void Camera::init(){
     if( cap.isOpened() )
         cap.release();    
-    cap.open(0); // open the default camera
+    cap.open(1); // open the default camera
     if ( cap.isOpened()==false ) {
         std::cout << "No webcam found, using a video file" << std::endl;
         cap.open("MarkerMovie.mpg");

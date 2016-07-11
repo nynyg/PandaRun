@@ -26,18 +26,22 @@
 
 class Gamer{
 public:
+    Gamer(int life):current_life(life){
+    };
     void setMatrix(float resultMatrix[4][16]);
     void playGame(std::vector<bool> &markers);
     void getTrans(float matrix[16], double step);
     void drawStuff();
     void showLife(cv::Mat &img);
     void showGold(cv::Mat &img);
+    bool isOver();
+    void gameOver(cv::Mat &img);
     void playBGM();
 private:
     float leftPanda[16];
+    short current_life;
     float rightPanda[16];
     short current_pos = 1;
-    short current_life = 3;
     int current_grade = 0;
     int count = 0;
     std::list<Stuff> leftList,rightList;
