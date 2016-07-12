@@ -1,5 +1,12 @@
 # PandaRun
-SS16 AR team project
+AR team project  
+![](https://github.com/Yelen719/PandaRun/blob/master/resource/PandaRun.gif)
+
+## Dependencies
+- OpenCV2
+- OpenGL
+- GLEW
+- GLFW
 
 ## Create your own OSDetect.h
 **OSDetect.h** 
