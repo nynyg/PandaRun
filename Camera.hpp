@@ -30,6 +30,16 @@ public:
     {
         init();
     }
+    
+    Camera(int _cameraNum) :
+    cameraNum(_cameraNum),
+    cameraWidth(1280),
+    cameraHeight(720),
+    virtualCameraAngel(30)
+    {
+        init();
+    }
+    
     Camera(int _cameraNum, int _cameraWidth, int _cameraHeight, int _virtualCameraAngel) :
     cameraNum(_cameraNum),
     cameraWidth(_cameraWidth),

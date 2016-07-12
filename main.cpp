@@ -21,7 +21,7 @@ bool isStart = false;
 
 int main(int argc, char* argv[])
 {
-    Camera camera;
+    Camera camera(0);
     Gamer game(3);
     GLFWwindow* window;
     if (!glfwInit())
